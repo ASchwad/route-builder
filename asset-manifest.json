@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/route-builder/static/css/main.3ea074b0.css",
-    "main.js": "/route-builder/static/js/main.0644cf4f.js",
+    "main.js": "/route-builder/static/js/main.e56e9583.js",
     "index.html": "/route-builder/index.html",
     "main.3ea074b0.css.map": "/route-builder/static/css/main.3ea074b0.css.map",
-    "main.0644cf4f.js.map": "/route-builder/static/js/main.0644cf4f.js.map"
+    "main.e56e9583.js.map": "/route-builder/static/js/main.e56e9583.js.map"
   },
   "entrypoints": [
     "static/css/main.3ea074b0.css",
-    "static/js/main.0644cf4f.js"
+    "static/js/main.e56e9583.js"
   ]
 }

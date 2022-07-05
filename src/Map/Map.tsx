@@ -1,14 +1,18 @@
-import React, { useEffect, useRef } from 'react';
-import { map, circle, tileLayer } from 'leaflet';
+import React, { useEffect, useRef, useState } from 'react';
+import { map, circle, tileLayer, polyline, Layer } from 'leaflet';
 import './Map.css';
 import { ICoordinate } from '../App';
 
 interface IMap {
     waypoints: ICoordinate[];
+    setWaypoints: (waypoints: ICoordinate[]) => void;
 }
 
-const Map = ({ waypoints }: IMap) => {
+const Map = ({ waypoints, setWaypoints }: IMap) => {
     const mapContainer = useRef(null);
+    const mapRef = useRef<any>(null);
+    const [mapElements, setMapElements] = useState<Layer[]>([]);
+
     useEffect(() => {
         // sets the map to the coordinates
         const initialState = {
@@ -22,24 +26,43 @@ const Map = ({ waypoints }: IMap) => {
             initialState.zoom
         );
 
-        // This API key is for use only in stackblitz.com
-        // Get your Geoapify API key on https://www.geoapify.com/get-started-with-maps-api
-        // The Geoapify service is free for small projects and the development phase.
         tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(leafletMap);
 
-        waypoints.forEach(waypoint => {
-            circle([waypoint.lat, waypoint.long], {
-                color: 'red',
-                fillColor: '#f03',
-                fillOpacity: 1,
-                radius: 400
-            }).addTo(leafletMap);
-        })
-    }, [mapContainer.current]);
+        mapRef.current = leafletMap;
+    }, []);
 
-    return <div className="map-container" ref={mapContainer}></div>;
+    useEffect(() => {
+        mapElements.forEach(element => {
+            mapRef.current.removeLayer(element);
+        });
+
+        let elements: Layer[] = []
+        waypoints.forEach(waypoint => {
+            elements.push(circle([waypoint.lat, waypoint.long], {
+                color: '#000',
+                fillColor: '#000',
+                fillOpacity: 1,
+                radius: 400,
+            }).addTo(mapRef.current));
+        })
+        waypoints.forEach((waypoint, index) => {
+            // Draw line from current point to next one (except for last waypoint)
+            if (index === waypoints.length - 1) {
+                return;
+            }
+            elements.push(polyline([[waypoint.lat, waypoint.long], [waypoints[index + 1].lat, waypoints[index + 1].long]], {
+                color: '#000',
+                fillColor: '#000',
+                fillOpacity: 1,
+            }).addTo(mapRef.current));
+        })
+        mapRef.current.on('click', (e: any) => setWaypoints([...waypoints, { lat: e.latlng.lat, long: e.latlng.lng }]))
+        setMapElements(elements);
+    }, [waypoints])
+
+    return <div className="map-container" ref={mapContainer} />;
 };
 
 export default Map;

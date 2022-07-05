@@ -20,7 +20,7 @@ function App() {
   return (
     <div className="App">
       <Controls waypoints={waypoints} setWaypoints={setWaypoints} />
-      <Map waypoints={waypoints} />
+      <Map waypoints={waypoints} setWaypoints={setWaypoints} />
     </div>
   );
 }

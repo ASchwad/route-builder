@@ -14,5 +14,9 @@ Ideas / nice to haves:
 - [x] Calculate distance
 - [ ] Import route
 - [ ] Name route
+- [x] Drag and drop of waypoints in Map
 ## What I've learned
 How to update the elements in the map without re initializing the map
+How to add div icon on map
+How to use leaflet controls without react-leaftlet
+How to drag and drop points and update the lines accordingly

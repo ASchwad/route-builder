@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/route-planer/static/css/main.3ea074b0.css",
-    "main.js": "/route-planer/static/js/main.0644cf4f.js",
-    "index.html": "/route-planer/index.html",
-    "main.3ea074b0.css.map": "/route-planer/static/css/main.3ea074b0.css.map",
-    "main.0644cf4f.js.map": "/route-planer/static/js/main.0644cf4f.js.map"
+    "main.css": "/route-builder/static/css/main.3ea074b0.css",
+    "main.js": "/route-builder/static/js/main.0644cf4f.js",
+    "index.html": "/route-builder/index.html",
+    "main.3ea074b0.css.map": "/route-builder/static/css/main.3ea074b0.css.map",
+    "main.0644cf4f.js.map": "/route-builder/static/js/main.0644cf4f.js.map"
   },
   "entrypoints": [
     "static/css/main.3ea074b0.css",

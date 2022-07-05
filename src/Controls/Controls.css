@@ -21,7 +21,7 @@ h2 {
     height: 3px;
     background-color: #cad6b0;
     opacity: 0.5;
-    margin-top: 15px;
+    margin-top: 12px;
     margin-bottom: 10px;
 }
 
@@ -37,6 +37,7 @@ h2 {
     background-color: #c3e452;
     color: #3b3b3b;
     font-weight: bold;
+    font-size: 1em;
     border-radius: 10px;
     border-width: 0px;
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { map, circle, tileLayer, polyline, Layer, marker, divIcon } from 'leaflet';
 import './Map.css';
-import { ICoordinate } from '../App';
+import { ICoordinate } from '../../App';
 
 interface IMap {
     waypoints: ICoordinate[];
@@ -41,10 +41,6 @@ const Map = ({ waypoints, setWaypoints }: IMap) => {
         let elements: Layer[] = []
         waypoints.forEach((waypoint, index) => {
             elements.push(marker([waypoint.lat, waypoint.long], {
-                // color: '#000',
-                // fillColor: '#000',
-                // fillOpacity: 1,
-                // radius: 400,
                 icon: divIcon({
                     className: "waypoint-icon",
                     html: `<div>${index}</div>`,

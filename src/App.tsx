@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import Controls from './Controls/Controls';
-import Map from './Map/Map';
+import Controls from './components/Controls/Controls';
+import Map from './components/Map/Map';
 
 export interface ICoordinate {
   lat: number;

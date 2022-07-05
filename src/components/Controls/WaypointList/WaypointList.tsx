@@ -1,5 +1,5 @@
 import React from 'react';
-import { ICoordinate } from '../../App';
+import { ICoordinate } from '../../../App';
 import WaypointListItem from './WaypointListItem/WaypointListItem';
 
 function WaypointList({ waypoints, setWaypoints }: { waypoints: ICoordinate[], setWaypoints: (waypoints: ICoordinate[]) => void }) {

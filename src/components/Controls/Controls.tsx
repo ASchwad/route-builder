@@ -1,5 +1,5 @@
 import React from 'react';
-import { ICoordinate } from '../App';
+import { ICoordinate } from '../../App';
 import './Controls.css';
 import TotalDistance from './TotalDistance';
 import WaypointList from './WaypointList/WaypointList';

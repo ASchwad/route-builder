@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ICoordinate } from '../App';
+import { ICoordinate } from '../../App';
 
 function crowDistance(coordinates1: ICoordinate, coordinates2: ICoordinate) {
     let { lat: lat1, long: lon1 } = coordinates1

@@ -7,7 +7,7 @@ import DragHandleIcon from './DragHandleIcon';
 function WaypointList({ waypoints, setWaypoints }: { waypoints: ICoordinate[], setWaypoints: (waypoints: ICoordinate[]) => void }) {
 
     const waypointList = waypoints.map((waypoint, index) => {
-        return <div key={index} style={{ display: "flex", alignItems: "center", color: "#fff", marginBottom: 10, marginTop: 30 }}>
+        return <div key={index} style={{ display: "flex", alignItems: "center", marginBottom: 20 }}>
             <button
                 style={{ height: "100%", backgroundColor: "transparent", borderWidth: 0, marginRight: 10 }}>
                 <DragHandleIcon height={30} color="#fff" />
@@ -17,18 +17,21 @@ function WaypointList({ waypoints, setWaypoints }: { waypoints: ICoordinate[], s
                 <p style={{ fontSize: 12, margin: 0 }}>Lat: {waypoint.lat}</p>
                 <p style={{ fontSize: 12, margin: 0 }}>Long: {waypoint.long}</p>
             </div>
-
             <button
                 style={{ marginLeft: "auto", height: "100%", backgroundColor: "transparent", borderWidth: 0 }}
-                onClick={() => setWaypoints(waypoints.slice(index, 1))}>
+                onClick={() => {
+                    const newWaypoints = [...waypoints];
+                    newWaypoints.splice(index, 1);
+                    setWaypoints(newWaypoints);
+                }}>
                 <DeleteIcon height={30} color="#fff" />
             </button>
         </div>
     });
 
     return (
-        <div>
-            {waypointList}
+        <div style={{ overflowY: "auto", color: "#fff", marginBottom: 25, paddingRight: 8 }}>
+            {waypoints.length === 0 ? <p>Click on the map to add your first waypoint!</p> : waypointList}
         </div>
     )
 }

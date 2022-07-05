@@ -1,11 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { map, circle, tileLayer, polyline, Layer, marker, divIcon, Polyline, Marker } from 'leaflet';
+import { map, tileLayer, polyline, marker, divIcon, Polyline, Marker, LatLngExpression } from 'leaflet';
 import './Map.css';
 import { ICoordinate } from '../../App';
 
 interface IMap {
     waypoints: ICoordinate[];
     setWaypoints: (waypoints: ICoordinate[]) => void;
+}
+
+function createNewPolyline(coordinates: LatLngExpression[] | LatLngExpression[][], mapRef: any) {
+    return polyline(coordinates, {
+        color: 'blue',
+        fillColor: 'blue',
+        fillOpacity: 1,
+        weight: 5
+    }).addTo(mapRef.current);
 }
 
 const Map = ({ waypoints, setWaypoints }: IMap) => {
@@ -41,9 +50,6 @@ const Map = ({ waypoints, setWaypoints }: IMap) => {
         });
 
         let newMarkers: Marker[] = [];
-        // Line at index 0 connects Marker 0 with Marker 1
-        // Line at index 1 connects Marker 1 with Marker 2
-        // --> For a Marker at index 0, the lines[index - 1] and lines[index] are relevant when changing position
         let newLines: Polyline[] = []
 
         waypoints.forEach((waypoint, index) => {
@@ -56,26 +62,21 @@ const Map = ({ waypoints, setWaypoints }: IMap) => {
                     iconSize: [30, 30]
                 })
             }).on("drag", (e) => {
+                // update lines to dragged waypoint
+                // Line at index 0 connects Marker 0 with Marker 1
+                // Line at index 1 connects Marker 1 with Marker 2
+                // --> For a Marker at index 0, the lines[index - 1] and lines[index] are relevant when changing position
                 if (index - 1 >= 0) {
                     mapRef.current.removeLayer(newLines[index - 1])
-                    newLines[index - 1] = polyline([[waypoints[index - 1].lat, waypoints[index - 1].long], [e.target._latlng.lat, e.target._latlng.lng]], {
-                        color: 'blue',
-                        fillColor: 'blue',
-                        fillOpacity: 1,
-                        weight: 5
-                    }).addTo(mapRef.current);
+                    newLines[index - 1] = createNewPolyline([[waypoints[index - 1].lat, waypoints[index - 1].long], [e.target._latlng.lat, e.target._latlng.lng]], mapRef)
+
                 }
                 if (index < waypoints.length) {
                     mapRef.current.removeLayer(newLines[index])
-                    newLines[index] = polyline([[e.target._latlng.lat, e.target._latlng.lng], [waypoints[index + 1].lat, waypoints[index + 1].long]], {
-                        color: 'blue',
-                        fillColor: 'blue',
-                        fillOpacity: 1,
-                        weight: 5
-                    }).addTo(mapRef.current);
+                    newLines[index] = createNewPolyline([[e.target._latlng.lat, e.target._latlng.lng], [waypoints[index + 1].lat, waypoints[index + 1].long]], mapRef);
                 }
             }).on("dragend", (e) => {
-                // update waypoints when done
+                // update new position of waypoint 
                 let newWaypoints = [...waypoints];
                 newWaypoints[index] = {
                     lat: e.target._latlng.lat,
@@ -90,12 +91,7 @@ const Map = ({ waypoints, setWaypoints }: IMap) => {
             if (index === waypoints.length - 1) {
                 return;
             }
-            newLines.push(polyline([[waypoint.lat, waypoint.long], [waypoints[index + 1].lat, waypoints[index + 1].long]], {
-                color: 'blue',
-                fillColor: 'blue',
-                fillOpacity: 1,
-                weight: 5
-            }).addTo(mapRef.current));
+            newLines.push(createNewPolyline([[waypoint.lat, waypoint.long], [waypoints[index + 1].lat, waypoints[index + 1].long]], mapRef));
         })
         mapRef.current.on('click', (e: any) => setWaypoints([...waypoints, { lat: e.latlng.lat, long: e.latlng.lng }]));
         setMarkers(newMarkers);

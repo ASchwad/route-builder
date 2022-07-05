@@ -10,8 +10,8 @@ interface IMap {
 
 function createNewPolyline(coordinates: LatLngExpression[] | LatLngExpression[][], mapRef: any) {
     return polyline(coordinates, {
-        color: 'blue',
-        fillColor: 'blue',
+        color: "#1086E8",
+        fillColor: "#1086E8",
         fillOpacity: 1,
         weight: 5
     }).addTo(mapRef.current);
@@ -26,9 +26,9 @@ const Map = ({ waypoints, setWaypoints }: IMap) => {
     useEffect(() => {
         // sets the map to the coordinates
         const initialState = {
-            lng: 11.44567,
-            lat: 47.30319,
-            zoom: 11,
+            lng: 11.533919891880805,
+            lat: 47.22143353240336,
+            zoom: 12,
         };
 
         const leafletMap = map(mapContainer.current!).setView(
@@ -71,7 +71,7 @@ const Map = ({ waypoints, setWaypoints }: IMap) => {
                     newLines[index - 1] = createNewPolyline([[waypoints[index - 1].lat, waypoints[index - 1].long], [e.target._latlng.lat, e.target._latlng.lng]], mapRef)
 
                 }
-                if (index < waypoints.length) {
+                if (index < waypoints.length - 1) {
                     mapRef.current.removeLayer(newLines[index])
                     newLines[index] = createNewPolyline([[e.target._latlng.lat, e.target._latlng.lng], [waypoints[index + 1].lat, waypoints[index + 1].long]], mapRef);
                 }

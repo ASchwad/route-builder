@@ -51,7 +51,7 @@ function WaypointListItem({ draggingItem, dragOverItem, setDragOverItem, setDrag
     return (
         <div
             key={index}
-            style={{ ...{ display: "flex", alignItems: "center", marginBottom: 20 }, ...dragEnterStyle() }}
+            style={{ ...{ display: "flex", alignItems: "center", margin: "20 0" }, ...dragEnterStyle() }}
             draggable
             onDragStart={(e) => handleDragStart(e, index)}
             onDragEnter={(e) => handleDragEnter(e, index)}

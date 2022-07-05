@@ -11,7 +11,7 @@
 - [ ] Drag and drop order of waypoints in Controls
 
 Ideas / nice to haves:
-- [ ] Calculate distance
+- [x] Calculate distance
 - [ ] Import route
 - [ ] Name route
 ## What I've learned

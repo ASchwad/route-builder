@@ -34,7 +34,6 @@ function TotalDistance({ waypoints }: { waypoints: ICoordinate[] }) {
             if (index === waypoints.length - 1) {
                 return acc;
             }
-            console.log(crowDistance(waypoints[index], waypoints[index + 1]))
             return acc + crowDistance(waypoints[index], waypoints[index + 1]);
         }, 0))
     }, [waypoints]);

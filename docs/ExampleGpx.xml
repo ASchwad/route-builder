@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <gpx
+      version="1.1"
+      creator="Alexander Schoenenwald"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://www.topografix.com/GPX/1/1"
+      xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+      <wpt lat="47.30319" lon="11.44567"><name>Waypoint1</name></wpt>
+      <wpt lat="47.249406957888446" lon="11.44088998705618"><name>Waypoint2</name></wpt>
+      <wpt lat="47.21490427494711" lon="11.482081695076108"><name>Waypoint3</name></wpt>
+      <wpt lat="47.201843347946806" lon="11.549347192153748"><name>Waypoint4</name></wpt>
+      <wpt lat="47.16264126922808" lon="11.565827854749378"><name>Waypoint5</name></wpt>
+      <wpt lat="47.12527904224337" lon="11.586428682993947"><name>Waypoint6</name></wpt>
+      <wpt lat="47.12060691750967" lon="11.634497282231193"><name>Waypoint7</name></wpt>
+      <wpt lat="47.14863351130145" lon="11.700419932613753"><name>Waypoint8</name></wpt>
+      <wpt lat="47.20837421346631" lon="11.690806212766274"><name>Waypoint9</name></wpt>
+      <wpt lat="47.230759648346925" lon="11.594669014291743"><name>Waypoint10</name></wpt>
+      <wpt lat="47.27829731797114" lon="11.483424541771226"><name>Waypoint11</name></wpt>
+      <trk>
+        <trkseg>
+        <trkpt lat="47.30319" lon="11.44567"></trkpt><trkpt lat="47.249406957888446" lon="11.44088998705618"></trkpt><trkpt lat="47.21490427494711" lon="11.482081695076108"></trkpt><trkpt lat="47.201843347946806" lon="11.549347192153748"></trkpt><trkpt lat="47.16264126922808" lon="11.565827854749378"></trkpt><trkpt lat="47.12527904224337" lon="11.586428682993947"></trkpt><trkpt lat="47.12060691750967" lon="11.634497282231193"></trkpt><trkpt lat="47.14863351130145" lon="11.700419932613753"></trkpt><trkpt lat="47.20837421346631" lon="11.690806212766274"></trkpt><trkpt lat="47.230759648346925" lon="11.594669014291743"></trkpt><trkpt lat="47.27829731797114" lon="11.483424541771226"></trkpt>
+        </trkseg>
+    </trk>
+    </gpx>

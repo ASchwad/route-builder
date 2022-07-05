@@ -1,6 +1,5 @@
 
-// file HeartIcon.tsx
-import React, { ReactSVG } from "react";
+import React from "react";
 
 function DeleteIcon(props: any) {
     return (

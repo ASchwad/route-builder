@@ -1,6 +1,4 @@
-
-// file HeartIcon.tsx
-import React, { ReactSVG } from "react";
+import React from "react";
 
 function DragHandleIcon(props: any) {
     return (

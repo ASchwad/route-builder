@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { map, circle, tileLayer, polyline, Layer } from 'leaflet';
+import { map, circle, tileLayer, polyline, Layer, marker, divIcon } from 'leaflet';
 import './Map.css';
 import { ICoordinate } from '../App';
 
@@ -39,14 +39,20 @@ const Map = ({ waypoints, setWaypoints }: IMap) => {
         });
 
         let elements: Layer[] = []
-        waypoints.forEach(waypoint => {
-            elements.push(circle([waypoint.lat, waypoint.long], {
-                color: '#000',
-                fillColor: '#000',
-                fillOpacity: 1,
-                radius: 400,
+        waypoints.forEach((waypoint, index) => {
+            elements.push(marker([waypoint.lat, waypoint.long], {
+                // color: '#000',
+                // fillColor: '#000',
+                // fillOpacity: 1,
+                // radius: 400,
+                icon: divIcon({
+                    className: "waypoint-icon",
+                    html: `<div>${index}</div>`,
+                    iconSize: [30, 30]
+                })
             }).addTo(mapRef.current));
         })
+
         waypoints.forEach((waypoint, index) => {
             // Draw line from current point to next one (except for last waypoint)
             if (index === waypoints.length - 1) {

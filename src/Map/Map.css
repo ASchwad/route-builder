@@ -2,3 +2,10 @@
     height: 100%;
     width: 100%;
 }
+
+.waypoint-icon {
+    background-color: #282c34;
+    border-radius: 40px;
+    font-size: 20px;
+    color: #fff;
+}

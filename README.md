@@ -4,7 +4,7 @@
 ## Todo
 - [x] Add dots
 - [x] Show waypoints in Controls
-- [] Show number of waypoint in dot
+- [x] Show number of waypoint in dot
 - [x] Connect dots with lines
 - [x] Remove dots
 - [ ] Download route

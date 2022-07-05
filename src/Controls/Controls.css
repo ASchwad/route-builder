@@ -1,0 +1,42 @@
+.controls-container {
+    height: 100%;
+    width: 38%;
+    background-color: #3b3b3b;
+    text-align: left;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.divider {
+    width: 100%;
+    height: 3px;
+    background-color: #cad6b0;
+    opacity: 0.5;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.footer {
+    margin-top: auto;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.download-button {
+    width: 100%;
+    height: 100%;
+    background-color: #c3e452;
+    color: #3b3b3b;
+    font-weight: bold;
+    border-radius: 10px;
+    border-width: 0px;
+}

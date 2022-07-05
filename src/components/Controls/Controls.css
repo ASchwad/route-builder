@@ -40,3 +40,9 @@ h2 {
     border-radius: 10px;
     border-width: 0px;
 }
+
+.download-button:disabled {
+    background-color: lightgrey;
+    color: #3b3b3b;
+    cursor: not-allowed;
+}

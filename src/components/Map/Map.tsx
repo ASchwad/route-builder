@@ -59,7 +59,7 @@ const Map = ({ waypoints, setWaypoints }: IMap) => {
                 icon: divIcon({
                     className: "waypoint-icon",
                     html: `<div>${index + 1}</div>`,
-                    iconSize: [30, 30]
+                    iconSize: [20, 20]
                 })
             }).on("drag", (e) => {
                 // update lines to dragged waypoint

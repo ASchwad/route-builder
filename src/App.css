@@ -7,6 +7,10 @@
   height: 180px;
 }
 
+button {
+  cursor: pointer;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

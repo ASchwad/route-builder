@@ -31,7 +31,7 @@
       "react-app/jest"
     ]
   },
-  "homepage": "https://aschwad.github.io/route-planer",
+  "homepage": "https://aschwad.github.io/route-builder",
   "browserslist": {
     "production": [
       ">0.2%",

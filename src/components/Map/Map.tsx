@@ -96,6 +96,7 @@ const Map = ({ waypoints, setWaypoints }: IMap) => {
         mapRef.current.on('click', (e: any) => setWaypoints([...waypoints, { lat: e.latlng.lat, long: e.latlng.lng }]));
         setMarkers(newMarkers);
         setLines(newLines);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [waypoints])
 
     return <div className="map-container" ref={mapContainer} />;

@@ -37,6 +37,11 @@ Visualizing a map with markers and lines without the `react-leaflet` library req
 * Although the drag functionality of the waypoints was not an explicit requirement, it appeared to me as a good addition in terms of usability for the app. Making marker (waypoint representation in Map) draggable in leaflet is easy, but efficiently updating the connected lines to the dragged marker was a bit more complicated. After determining the affected lines of the dragged marker, the lines are removed and re-rendered with the new position of the marker. To reliably update the lines and marker, I kept them in separate arrays and applied the following approach for updates:
   
 [<img src="docs/ExampleDataStructure.drawio.png" width="400" />](docs/ExampleDataStructure.drawio.png)  
+```
+// Simplified form
+markers = [0,1,2]
+lines = [0,1]
+```
 For example, when the marker with `index=1` (M1) is dragged, the lines at `index=0` (line inbound to M1) and `index=1` (line outbound from M1) have to be updated.  
 To summarize: When updating the marker at index `i`, the lines at `i` and `i-1` have to be updated, if existent.
 ### Controls

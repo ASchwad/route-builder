@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ICoordinate } from '../../App';
-import { crowDistance } from '../../utils/calculateCrowDistance';
+import { calculateDistance } from '../../utils/calculateDistance';
 
 function TotalDistance({ waypoints }: { waypoints: ICoordinate[] }) {
     const [totalDistance, setTotalDistance] = useState(0);
@@ -10,7 +10,7 @@ function TotalDistance({ waypoints }: { waypoints: ICoordinate[] }) {
             if (index === waypoints.length - 1) {
                 return acc;
             }
-            return acc + crowDistance(waypoints[index], waypoints[index + 1]);
+            return acc + calculateDistance(waypoints[index], waypoints[index + 1]);
         }, 0))
     }, [waypoints]);
 

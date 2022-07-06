@@ -1,6 +1,6 @@
-import React from "react";
+import React, { SVGProps } from "react";
 
-function DragHandleIcon(props: any) {
+function DragHandleIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
             <path d="M20 9H4v2h16V9zM4 15h16v-2H4v2z" />

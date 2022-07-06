@@ -1,6 +1,6 @@
 import { ICoordinate } from "../App";
 
-export function crowDistance(coordinates1: ICoordinate, coordinates2: ICoordinate) {
+export function calculateDistance(coordinates1: ICoordinate, coordinates2: ICoordinate) {
     let { lat: lat1, long: lon1 } = coordinates1
     let { lat: lat2, long: lon2 } = coordinates2
     if ((lat1 === lat2) && (lon1 === lon2)) {

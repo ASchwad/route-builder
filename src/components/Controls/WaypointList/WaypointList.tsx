@@ -21,7 +21,7 @@ function WaypointList({ waypoints, setWaypoints }: { waypoints: ICoordinate[], s
     });
 
     return (
-        <div style={{ overflowY: "auto", color: "#fff", marginBottom: 25, paddingRight: 8 }}>
+        <div style={{ overflowY: "auto", color: "#fff", marginBottom: 25, paddingRight: 4 }}>
             {waypoints.length === 0 ? <p>Click on the map to add your first waypoint!</p> : listItems}
         </div>
     )

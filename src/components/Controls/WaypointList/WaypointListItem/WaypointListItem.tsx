@@ -4,14 +4,14 @@ import DeleteIcon from './DeleteIcon';
 import DragHandleIcon from './DragHandleIcon';
 
 interface IWaypointListItem {
-    draggingItem: any;
-    dragOverItem: any;
+    draggingItem: number;
+    dragOverItem: number;
     waypoint: ICoordinate;
     index: number;
     waypoints: ICoordinate[];
     setWaypoints: (waypoints: ICoordinate[]) => void;
-    setDragOverItem: (dragOverItem: any) => void;
-    setDraggingItem: (draggingItem: any) => void;
+    setDragOverItem: (dragOverItem: number) => void;
+    setDraggingItem: (draggingItem: number) => void;
 }
 
 function WaypointListItem({ draggingItem, dragOverItem, setDragOverItem, setDraggingItem, waypoint, index, waypoints, setWaypoints }: IWaypointListItem) {
@@ -39,10 +39,12 @@ function WaypointListItem({ draggingItem, dragOverItem, setDragOverItem, setDrag
 
     const dragEnterStyle = () => {
         if (index === dragOverItem && dragOverItem !== draggingItem) {
+            const borderProp = "5px solid #cad6b0";
+            // Depending of the drag direction, the insertion indicator is on the top or the bottom of the list item
             if (draggingItem > dragOverItem) {
-                return { borderTop: "5px solid #cad6b0" }
+                return { borderTop: borderProp }
             } else {
-                return { borderBottom: "5px solid #cad6b0" }
+                return { borderBottom: borderProp }
             }
         }
         return {}

@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
+import React, { MutableRefObject, useEffect, useRef } from 'react';
 import { map, tileLayer, polyline, marker, divIcon, Polyline, Marker, LatLngExpression, Map as MapClass, LeafletMouseEvent } from 'leaflet';
 import './Map.css';
 import { ICoordinate } from '../../App';
@@ -20,8 +20,6 @@ function createNewPolyline(coordinates: LatLngExpression[] | LatLngExpression[][
 const Map = ({ waypoints, setWaypoints }: IMap) => {
     const mapContainer = useRef(null);
     const mapRef = useRef<MapClass>();
-    const [markers, setMarkers] = useState<Marker[]>([]);
-    const [lines, setLines] = useState<Polyline[]>([]);
 
     useEffect(() => {
         // sets the map to the coordinates
@@ -46,8 +44,11 @@ const Map = ({ waypoints, setWaypoints }: IMap) => {
     useEffect(() => {
         if (mapRef.current !== undefined) {
             // remove all elements from the map
-            [...markers, ...lines].forEach(element => {
-                mapRef.current!.removeLayer(element);
+            mapRef.current!.eachLayer(element => {
+                // Mitigate removal of tileLayer which has attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                if (element.getAttribution?.() === null) {
+                    mapRef.current!.removeLayer(element);
+                }
             });
 
             let newMarkers: Marker[] = [];
@@ -95,9 +96,6 @@ const Map = ({ waypoints, setWaypoints }: IMap) => {
                 newLines.push(createNewPolyline([[waypoint.lat, waypoint.long], [waypoints[index + 1].lat, waypoints[index + 1].long]], mapRef));
             })
             mapRef.current.on('click', (e: LeafletMouseEvent) => setWaypoints([...waypoints, { lat: e.latlng.lat, long: e.latlng.lng }]));
-            setMarkers(newMarkers);
-            setLines(newLines);
-
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [waypoints])

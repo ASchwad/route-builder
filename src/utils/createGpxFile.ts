@@ -1,7 +1,7 @@
 import { ICoordinate } from "../App";
 
 export default function createGPX(waypoints: ICoordinate[]): void {
-  var xmltext = `<?xml version="1.0" encoding="UTF-8"?>
+  const xmltext = `<?xml version="1.0" encoding="UTF-8"?>
     <gpx
       version="1.1"
       creator="Alexander Schoenenwald"
@@ -16,9 +16,9 @@ export default function createGPX(waypoints: ICoordinate[]): void {
     </trk>
     </gpx>`;
 
-  var filename = "route.gpx";
-  var pom = document.createElement('a');
-  var bb = new Blob([xmltext], { type: 'text/plain' });
+  const filename = "route.gpx";
+  const pom = document.createElement('a');
+  const bb = new Blob([xmltext], { type: 'text/plain' });
 
   pom.setAttribute('href', window.URL.createObjectURL(bb));
   pom.setAttribute('download', filename);

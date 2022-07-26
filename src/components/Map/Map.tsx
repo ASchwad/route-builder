@@ -43,14 +43,6 @@ const Map = ({ waypoints, setWaypoints }: IMap) => {
 
     useEffect(() => {
         if (mapRef.current !== undefined) {
-            // remove all elements from the map
-            mapRef.current!.eachLayer(element => {
-                // Mitigate removal of tileLayer which has attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                if (element.getAttribution?.() === null) {
-                    mapRef.current!.removeLayer(element);
-                }
-            });
-
             let newMarkers: Marker[] = [];
             let newLines: Polyline[] = []
 
@@ -96,6 +88,15 @@ const Map = ({ waypoints, setWaypoints }: IMap) => {
                 newLines.push(createNewPolyline([[waypoint.lat, waypoint.long], [waypoints[index + 1].lat, waypoints[index + 1].long]], mapRef));
             })
             mapRef.current.on('click', (e: LeafletMouseEvent) => setWaypoints([...waypoints, { lat: e.latlng.lat, long: e.latlng.lng }]));
+            return function cleanup() {
+                // remove all elements from the map
+                mapRef.current!.eachLayer(element => {
+                    // Mitigate removal of tileLayer which has attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    if (element.getAttribution?.() === null) {
+                        mapRef.current!.removeLayer(element);
+                    }
+                });
+            };
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [waypoints])

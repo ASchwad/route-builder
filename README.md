@@ -6,14 +6,13 @@ Route builder enables you to plan a route for your next session of cross-country
 
 ## Getting started with the code
 `yarn install` to install the dependencies  
-`yarn start` to start the server locally
+`yarn start` to start the server locally; The Geoapify API key in this repo is only valid from the prod deployment origin. To run the project locally, create a API key at Geoapify and replace it in the `.env.local` or `.env.production` file (depending on your deployment) by adding the key `REACT_APP_GEOAPIFY_KEY=YOUR_KEY`.
 
 The app can also be accessed [here](https://aschwad.github.io/route-builder) and is deployed via GitHub Pages on every commit on the master branch.
 
 [<img src="docs/ComponentHierarchy.drawio.png" width="400" />](docs/ComponentHierarchy.drawio.png)  
 
-## Requirements
-### Essential
+## Features
 - [x] Show waypoints in Map
 - [x] Show waypoints in Controls
 - [x] Add and remove waypoints
@@ -21,9 +20,6 @@ The app can also be accessed [here](https://aschwad.github.io/route-builder) and
 - [x] Prepare and download route as GPX file
 - [x] Change order of the waypoints in Controls section via Drag and drop
 - [x] Avoid using 3rd party libraries for prebuilt components 
-
-### Optional
-- [x] Calculate distance
 - [x] Drag and drop of waypoints in Map
 
 ## What I've learned

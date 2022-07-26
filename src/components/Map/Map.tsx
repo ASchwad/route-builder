@@ -2,6 +2,7 @@ import React, { MutableRefObject, useEffect, useRef } from 'react';
 import { map, tileLayer, polyline, marker, divIcon, Polyline, Marker, LatLngExpression, Map as MapClass, LeafletMouseEvent } from 'leaflet';
 import './Map.css';
 import { ICoordinate } from '../../App';
+import { IRouteResult } from './types';
 
 interface IMap {
     waypoints: ICoordinate[];
@@ -79,17 +80,42 @@ const Map = ({ waypoints, setWaypoints }: IMap) => {
                     setWaypoints(newWaypoints)
                 }).addTo(mapRef.current!));
             })
-
-            waypoints.forEach((waypoint, index) => {
-                // Draw line from current point to next one (except for last waypoint)
-                if (index === waypoints.length - 1) {
-                    return;
-                }
-                newLines.push(createNewPolyline([[waypoint.lat, waypoint.long], [waypoints[index + 1].lat, waypoints[index + 1].long]], mapRef));
-            })
+            if (waypoints.length > 2) {
+                waypoints.forEach((waypoint, index) => {
+                    // Draw line from current point to next one (except for last waypoint)
+                    if (index === waypoints.length - 1) {
+                        return;
+                    }
+                    // Draw straight lines from point to point
+                    // newLines.push(createNewPolyline([[waypoint.lat, waypoint.long], [waypoints[index + 1].lat, waypoints[index + 1].long]], mapRef));
+                    var requestOptions = {
+                        method: 'GET',
+                    };
+                    const fromWaypoint = waypoints[index].lat + "," + waypoints[index].long;
+                    const toWaypoint = waypoints[index + 1].lat + "," + waypoints[index + 1].long;
+                    // API key only accepted from https://aschwad.github.io/route-builder
+                    fetch(`https://api.geoapify.com/v1/routing?waypoints=${fromWaypoint}|${toWaypoint}&mode=hike&apiKey=${process.env.REACT_APP_GEOAPIFY_KEY}`, requestOptions)
+                        .then(response => response.json())
+                        .then(result => {
+                            let route: IRouteResult | undefined = result;
+                            if (route?.statusCode !== 401 && route !== undefined) {
+                                const coordinates = route.features[0].geometry.coordinates[0];
+                                coordinates.forEach((currentCoordinate, index) => {
+                                    // Draw line from current point to next one (except for last waypoint)
+                                    if (index === coordinates.length - 1) {
+                                        return;
+                                    }
+                                    createNewPolyline([[currentCoordinate[1], currentCoordinate[0]], [coordinates[index + 1][1], coordinates[index + 1][0]]], mapRef);
+                                })
+                            }
+                        })
+                        .catch(error => console.log('error', error));
+                })
+            }
             mapRef.current.on('click', (e: LeafletMouseEvent) => setWaypoints([...waypoints, { lat: e.latlng.lat, long: e.latlng.lng }]));
+
             return function cleanup() {
-                // remove all elements from the map
+                // remove all elements from the map before each useEffect trigger and on unmount
                 mapRef.current!.eachLayer(element => {
                     // Mitigate removal of tileLayer which has attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     if (element.getAttribution?.() === null) {

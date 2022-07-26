@@ -25,7 +25,7 @@ function Controls({ waypoints, setWaypoints }: { waypoints: ICoordinate[], setWa
                     Clear route
                 </button>
                 <div className="divider" />
-                <TotalDistance waypoints={waypoints} />
+                {/* <TotalDistance waypoints={waypoints} /> */}
                 <button className="download-button" onClick={() => createGPX(waypoints)} disabled={waypoints.length < 2}>
                     <h3>
                         Download your route
